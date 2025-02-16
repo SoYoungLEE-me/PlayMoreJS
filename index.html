@@ -3,9 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>숫자 맞추기 게임</title>
+    <link rel="stylesheet" href="numberGuess.css" />
   </head>
   <body>
-    <h1>임시 문구입니다</h1>
+    <div class="numberGame-position">
+      <h2>숫자 맞추기 게임</h2>
+      <p>1부터 100까지의 숫자를 맞추는 게임입니다.</p>
+      <div class="game-item">
+        <div class="input=area">
+          <p id="randomNum-area"></p>
+          <label>입력 : </label>
+          <input
+            type="number"
+            id="user-input"
+            placeholder="숫자를 입력하세요"
+            required
+          />
+          <button id="play-button">GO!</button>
+        </div>
+        <div class="result-area">
+          <div id="chance-area"></div>
+          <div id="hint-area"></div>
+        </div>
+      </div>
+      <button id="reset-button">Reset</button>
+    </div>
   </body>
+  <script src="numberGuess.js"></script>
 </html>

@@ -1,0 +1,25 @@
+.numberGame-position {
+  margin: 200px auto;
+  text-align: center;
+  width: 600px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.game-item {
+  text-align: left;
+}
+
+.result-area div {
+  margin-top: 10px;
+}
+
+#reset-button {
+  align-self: flex-end;
+  margin-right: 50px;
+}
