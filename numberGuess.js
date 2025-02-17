@@ -13,8 +13,18 @@ let randomNumArea = document.getElementById("randomNum-area"); //임시 정답 �
 let playButton = document.getElementById("play-button");
 let userInput = document.getElementById("user-input");
 let hintArea = document.getElementById("hint-area");
+let resetButton = document.getElementById("reset-button");
+let chanceArea = document.getElementById("chance-area");
+
+let chance = 3;
+let history = [];
+let gameOver = false;
 
 playButton.addEventListener("click", play);
+resetButton.addEventListener("click", reset);
+userInput.addEventListener("focus", function () {
+  userInput.value = "";
+});
 
 function pickRandomNum() {
   computerNum = Math.floor(Math.random() * 100) + 1;
@@ -29,18 +39,52 @@ function play() {
     return;
   }
 
+  if (history.includes(userValue)) {
+    hintArea.innerHTML = "이미 입력된 값입니다. 다시 입력해주세요";
+    return;
+  }
+
   if (1 > userValue || userValue > 100) {
     alert("1부터 100까지의 숫자를 입력하세요");
     return;
   }
 
   if (userValue < computerNum) {
-    hintArea.innerHTML = "Hint : <strong>UP!</strong>"; // 굵게 표시
+    hintArea.innerHTML = "<strong> UP!</strong>"; // 굵게 표시
   } else if (userValue > computerNum) {
-    hintArea.innerHTML = "힌트 : <strong>DOWN!</strong>"; // 굵게 표시
+    hintArea.innerHTML = "<strong>DOWN!</strong>"; // 굵게 표시
   } else {
     hintArea.innerHTML = "<strong>정답!</strong>";
+    chanceArea.innerHTML = "🎉 축하합니다! 정답을 맞추셨습니다!";
+    gameOver = true;
   }
+
+  history.push(userValue);
+
+  chance--;
+
+  if (chance > 0 && !gameOver) {
+    chanceArea.innerHTML = `남은 기회는 ${chance}번!`;
+  } else if (chance == 0) {
+    chanceArea.innerHTML = "❌ 기회 소진! 다음에 도전하세요!";
+    hintArea.innerHTML = "";
+    gameOver = true;
+  }
+
+  if (gameOver == true) {
+    playButton.disabled = true;
+  }
+}
+
+function reset() {
+  userInput.value = "";
+  hintArea.innerHTML = "";
+  chanceArea.innerHTML = "";
+  playButton.disabled = false;
+  pickRandomNum();
+  chance = 3;
+  history = [];
+  gameOver = false;
 }
 
 pickRandomNum();
