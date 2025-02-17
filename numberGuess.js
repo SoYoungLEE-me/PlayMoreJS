@@ -51,8 +51,10 @@ function play() {
 
   if (userValue < computerNum) {
     hintArea.innerHTML = "<strong> UP!</strong>"; // 굵게 표시
+    chance--;
   } else if (userValue > computerNum) {
     hintArea.innerHTML = "<strong>DOWN!</strong>"; // 굵게 표시
+    chance--;
   } else {
     hintArea.innerHTML = "<strong>정답!</strong>";
     chanceArea.innerHTML = "🎉 축하합니다! 정답을 맞추셨습니다!";
@@ -60,8 +62,6 @@ function play() {
   }
 
   history.push(userValue);
-
-  chance--;
 
   if (chance > 0 && !gameOver) {
     chanceArea.innerHTML = `남은 기회는 ${chance}번!`;
