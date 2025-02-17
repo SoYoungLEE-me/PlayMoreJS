@@ -88,3 +88,27 @@ function reset() {
 }
 
 pickRandomNum();
+
+// 모달 열고 닫기 기능
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("game-modal");
+  const openModalBtn = document.getElementById("open-modal-button");
+  const closeModalBtn = document.querySelector(".close-button");
+
+  // 모달 열기
+  openModalBtn.addEventListener("click", () => {
+    modal.style.display = "flex";
+  });
+
+  // 모달 닫기
+  closeModalBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // 배경 클릭 시 모달 닫기
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+});
